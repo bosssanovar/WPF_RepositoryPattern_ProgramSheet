@@ -1,4 +1,4 @@
-﻿using Entity;
+﻿using Entity.XX;
 using Reactive.Bindings;
 using System.ComponentModel;
 
@@ -36,13 +36,13 @@ namespace WpfApp1
 #pragma warning disable IDE0028 // コレクションの初期化を簡略化します
             var comboBoxItemList = new List<ComboBoxItemDisplayValue<SomeEnum>>();
 #pragma warning restore IDE0028 // コレクションの初期化を簡略化します
-            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.SomeEnum.Dog, Entity.SomeEnum.Dog.GetText()));
+            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.XX.SomeEnum.Dog, Entity.XX.SomeEnum.Dog.GetText()));
             if (Bool.Value)
             {
-                comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.SomeEnum.Cat, Entity.SomeEnum.Cat.GetText()));
+                comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.XX.SomeEnum.Cat, Entity.XX.SomeEnum.Cat.GetText()));
             }
-            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.SomeEnum.Elephant, Entity.SomeEnum.Elephant.GetText()));
-            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.SomeEnum.Pig, Entity.SomeEnum.Pig.GetText()));
+            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.XX.SomeEnum.Elephant, Entity.XX.SomeEnum.Elephant.GetText()));
+            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.XX.SomeEnum.Pig, Entity.XX.SomeEnum.Pig.GetText()));
 
             ComboBoxItems.Value = new List<ComboBoxItemDisplayValue<SomeEnum>>(comboBoxItemList);
         }

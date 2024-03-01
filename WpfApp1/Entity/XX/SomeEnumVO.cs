@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entity
+namespace Entity.XX
 {
     public record SomeEnumVO(SomeEnum Content) : ValueObjectBase<SomeEnum>(Content), IInputLimit<SomeEnum>
     {

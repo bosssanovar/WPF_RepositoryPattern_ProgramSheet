@@ -1,11 +1,11 @@
-﻿namespace Entity
+﻿namespace Entity.XX
 {
     public class XXEntity : EntityBase<XXEntity>
     {
         private const string Text_InitValue = "Init Value";
         private const int Number_InitValue = 100;
         private const bool Bool_InitValue = true;
-        private const SomeEnum SomeEnum_InitValue = Entity.SomeEnum.Pig;
+        private const SomeEnum SomeEnum_InitValue = XX.SomeEnum.Pig;
 
         private BoolVO _bool = new(Bool_InitValue);
 
@@ -35,7 +35,7 @@
 
         private void CurrectSomeEnumIfNeed()
         {
-            if (!Bool.Content && SomeEnum.Content == Entity.SomeEnum.Cat)
+            if (!Bool.Content && SomeEnum.Content == XX.SomeEnum.Cat)
             {
                 SomeEnum = new SomeEnumVO(SomeEnum_InitValue);
             }

@@ -1,4 +1,4 @@
-﻿namespace Entity
+﻿namespace Entity.XX
 {
     public record NumberVO(int Content) : ValueObjectBase<int>(Content), IInputLimit<int>
     {

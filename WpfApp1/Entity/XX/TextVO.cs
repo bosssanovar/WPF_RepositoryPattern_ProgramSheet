@@ -1,4 +1,4 @@
-﻿namespace Entity
+﻿namespace Entity.XX
 {
     public record TextVO(string Content) : ValueObjectBase<string>(Content), IInputLimit<string>
     {

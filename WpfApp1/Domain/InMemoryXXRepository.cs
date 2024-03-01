@@ -1,4 +1,4 @@
-﻿using Entity;
+﻿using Entity.XX;
 
 namespace Repository
 {

@@ -1,4 +1,4 @@
-﻿using Entity;
+﻿using Entity.XX;
 using Microsoft.Extensions.DependencyInjection;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
