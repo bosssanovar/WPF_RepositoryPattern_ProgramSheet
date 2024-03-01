@@ -1,6 +1,6 @@
 ﻿namespace Entity
 {
-    public class XXEntity : EntityBase
+    public class XXEntity : EntityBase<XXEntity>
     {
         private const string Text_InitValue = "Init Value";
         private const int Number_InitValue = 100;
@@ -31,11 +31,6 @@
             Number = new NumberVO(Number_InitValue);
             Bool = new BoolVO(Bool_InitValue);
             SomeEnum = new SomeEnumVO(SomeEnum_InitValue);
-        }
-
-        public XXEntity Clone()
-        {
-            return (XXEntity)MemberwiseClone();
         }
 
         private void CurrectSomeEnumIfNeed()

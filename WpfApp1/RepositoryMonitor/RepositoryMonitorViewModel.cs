@@ -47,12 +47,12 @@ namespace RepositoryMonitor
             _oldEntity = newEntity;
         }
 
-        private static Dictionary<string, string> GetEntityProperties(XXEntity nowEntity)
+        private static Dictionary<string, string> GetEntityProperties(XXEntity entity)
         {
             var ret = new Dictionary<string, string>();
 
             // Entityの型を取得
-            Type entityType = nowEntity.GetType();
+            Type entityType = entity.GetType();
 
             // Entityのプロパティの一覧を取得
             PropertyInfo[] entityPropertyInfos = entityType.GetProperties();
@@ -64,7 +64,7 @@ namespace RepositoryMonitor
                 string entityPropertyName = entityPropertyInfo.Name;
 
                 // ValueObjectオブジェクトを取得
-                var entityPropertyValue = entityPropertyInfo.GetValue(nowEntity);
+                var entityPropertyValue = entityPropertyInfo.GetValue(entity);
 
                 if (entityPropertyValue != null)
                 {
