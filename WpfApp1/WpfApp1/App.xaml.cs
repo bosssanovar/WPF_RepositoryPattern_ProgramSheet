@@ -4,6 +4,7 @@ using RepositoryMonitor;
 using System.Windows;
 using Usecase;
 using WpfApp1.MainWindow;
+using WpfApp1.Setup;
 
 namespace WpfApp1
 {
@@ -20,19 +21,25 @@ namespace WpfApp1
             services.AddSingleton<IXXRepository, InMemoryXXRepository>();
             services.AddTransient<SaveLoadUsecase>();
             services.AddTransient<InitUsecase>();
-            services.AddTransient<Model>();
+
+            services.AddTransient<MainWindowModel>();
+            services.AddTransient<MainWindowView>();
+
             services.AddTransient<RepositoryMonitorView>();
+
+            services.AddTransient<SetupModel>();
+            services.AddTransient<SetupView>();
+
             var provider = services.BuildServiceProvider();
 
-
-
-
-
-
-            var model = provider.GetRequiredService<Model>();
-            var repositoryMonitorView = provider.GetRequiredService<RepositoryMonitorView>();
-            var mainWindow = new MainWindowView(model, repositoryMonitorView);
+            var setupWindow = provider.GetRequiredService<SetupView>();
+            var mainWindow = provider.GetRequiredService<MainWindowView>();
             MainWindow = mainWindow;
+            var entityMonitor = provider.GetRequiredService<RepositoryMonitorView>();
+
+            entityMonitor.Show();
+            setupWindow.ShowDialog();
+                       
             mainWindow.Show();
         }
     }

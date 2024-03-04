@@ -16,13 +16,9 @@ namespace WpfApp1.MainWindow
     /// </summary>
     public partial class MainWindowView : Window
     {
-        private readonly RepositoryMonitorView _repositoryMonitorView;
-
-        public MainWindowView(Model model, RepositoryMonitorView repositoryMonitorView)
+        public MainWindowView(MainWindowModel model)
         {
             _model = model;
-
-            _repositoryMonitorView = repositoryMonitorView;
 
             Text = _model.Entity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
@@ -112,8 +108,7 @@ namespace WpfApp1.MainWindow
         {
             base.OnContentRendered(e);
 
-            _repositoryMonitorView.Owner = this;
-            _repositoryMonitorView.Show();
+            InitModel();
         }
     }
 }

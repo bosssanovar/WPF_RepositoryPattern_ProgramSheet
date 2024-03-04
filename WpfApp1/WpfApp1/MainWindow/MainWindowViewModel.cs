@@ -10,7 +10,7 @@ namespace WpfApp1.MainWindow
         public event PropertyChangedEventHandler? PropertyChanged;
 #pragma warning restore CS0067 // イベント 'MainWindow.PropertyChanged' は使用されていません
 
-        private readonly Model _model;
+        private readonly MainWindowModel _model;
 
         public bool IsAutoSave
         {
@@ -53,6 +53,11 @@ namespace WpfApp1.MainWindow
             {
                 InitComboBoxItems();
             });
+        }
+
+        private void InitModel()
+        {
+            _model.LoadEntity();
         }
     }
 }

@@ -11,7 +11,7 @@ using Usecase;
 
 namespace WpfApp1.MainWindow
 {
-    public class Model
+    public class MainWindowModel
     {
         public bool IsAutoSave { get; set; }
 
@@ -21,7 +21,7 @@ namespace WpfApp1.MainWindow
 
         private readonly InitUsecase _initUsecase;
 
-        public Model(SaveLoadUsecase saveLoadUsecase, InitUsecase initUsecase)
+        public MainWindowModel(SaveLoadUsecase saveLoadUsecase, InitUsecase initUsecase)
         {
             _saveLoadUsecase = saveLoadUsecase;
             _initUsecase = initUsecase;
@@ -38,7 +38,7 @@ namespace WpfApp1.MainWindow
             });
         }
 
-        private void LoadEntity()
+        public void LoadEntity()
         {
             Debug.WriteLine("LoadEntity");
 
