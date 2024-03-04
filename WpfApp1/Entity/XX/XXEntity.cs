@@ -6,6 +6,7 @@
         private const int Number_InitValue = 100;
         private const bool Bool_InitValue = true;
         private const SomeEnum SomeEnum_InitValue = XX.SomeEnum.Pig;
+        private const int SpeakerCount_InitValue = 40;
 
         private BoolVO _bool = new(Bool_InitValue);
 
@@ -25,12 +26,15 @@
         }
         public SomeEnumVO SomeEnum { get; set; } = new SomeEnumVO(SomeEnum_InitValue);
 
+        public SpeakerCountVO SpeakerCount { get; set; } = new SpeakerCountVO(SpeakerCount_InitValue);
+
         public void Init()
         {
             Text = new TextVO(Text_InitValue);
             Number = new NumberVO(Number_InitValue);
             Bool = new BoolVO(Bool_InitValue);
             SomeEnum = new SomeEnumVO(SomeEnum_InitValue);
+            SpeakerCount = new SpeakerCountVO(SpeakerCount_InitValue);
         }
 
         private void CurrectSomeEnumIfNeed()
