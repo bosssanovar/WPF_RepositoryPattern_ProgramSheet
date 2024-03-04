@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows;
 using Usecase;
 
-namespace WpfApp1
+namespace WpfApp1.MainWindow
 {
     public class Model
     {

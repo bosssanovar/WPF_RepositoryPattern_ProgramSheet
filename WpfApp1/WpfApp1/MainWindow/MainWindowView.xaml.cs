@@ -7,17 +7,18 @@ using RepositoryMonitor;
 using System.Diagnostics;
 using System.Windows;
 using Usecase;
+using WpfApp1.MainWindow;
 
-namespace WpfApp1
+namespace WpfApp1.MainWindow
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindowView : Window
     {
         private readonly RepositoryMonitorView _repositoryMonitorView;
 
-        public MainWindow(Model model, RepositoryMonitorView repositoryMonitorView)
+        public MainWindowView(Model model, RepositoryMonitorView repositoryMonitorView)
         {
             _model = model;
 

@@ -3,6 +3,7 @@ using Repository;
 using RepositoryMonitor;
 using System.Windows;
 using Usecase;
+using WpfApp1.MainWindow;
 
 namespace WpfApp1
 {
@@ -30,7 +31,7 @@ namespace WpfApp1
 
             var model = provider.GetRequiredService<Model>();
             var repositoryMonitorView = provider.GetRequiredService<RepositoryMonitorView>();
-            var mainWindow = new MainWindow(model, repositoryMonitorView);
+            var mainWindow = new MainWindowView(model, repositoryMonitorView);
             MainWindow = mainWindow;
             mainWindow.Show();
         }

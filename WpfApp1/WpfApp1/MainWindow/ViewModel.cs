@@ -2,9 +2,9 @@
 using Reactive.Bindings;
 using System.ComponentModel;
 
-namespace WpfApp1
+namespace WpfApp1.MainWindow
 {
-    public partial class MainWindow : INotifyPropertyChanged
+    public partial class MainWindowView : INotifyPropertyChanged
     {
 #pragma warning disable CS0067 // イベント 'MainWindow.PropertyChanged' は使用されていません
         public event PropertyChangedEventHandler? PropertyChanged;
