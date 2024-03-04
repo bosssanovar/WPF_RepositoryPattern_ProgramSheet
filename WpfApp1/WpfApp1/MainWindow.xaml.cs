@@ -17,20 +17,11 @@ namespace WpfApp1
     {
         private readonly RepositoryMonitorView _repositoryMonitorView;
 
-        public MainWindow()
+        public MainWindow(Model model, RepositoryMonitorView repositoryMonitorView)
         {
-            // DI
-            var services = new ServiceCollection();
-            services.AddSingleton<IXXRepository, InMemoryXXRepository>();
-            services.AddTransient<SaveLoadUsecase>();
-            services.AddTransient<InitUsecase>();
-            services.AddTransient<Model>();
-            services.AddTransient<RepositoryMonitorView>();
-            var provider = services.BuildServiceProvider();
+            _model = model;
 
-            _model = provider.GetRequiredService<Model>();
-
-            _repositoryMonitorView = provider.GetRequiredService<RepositoryMonitorView>();
+            _repositoryMonitorView = repositoryMonitorView;
 
             Text = _model.Entity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
