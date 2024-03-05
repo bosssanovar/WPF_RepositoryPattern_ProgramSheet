@@ -8,7 +8,7 @@ namespace Entity.XX
 {
     public record SpeakerCountVO(int Content) : ValueObjectBase<int>(Content), IInputLimit<int>, ISettingInfos
     {
-        private const int MinValue = 1;
+        private const int MinValue = 5;
         private const int MaxValue = 640;
 
         public List<(string Name, string Value)> SettingInfos
