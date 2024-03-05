@@ -48,18 +48,19 @@
                   AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False"
                   CanUserResizeRows="False" CanUserSortColumns="False"
                   SelectionUnit="Cell" SelectionMode="Single"
-                  ItemsSource="{Binding DataGridSource.Value}" MaxWidth="500" MaxHeight="300">
+                  HeadersVisibility="None"
+                  ItemsSource="{Binding DataGridSource}" MaxWidth="500" MaxHeight="300">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[0].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[1].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[2].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[3].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[4].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[5].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[6].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[7].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[8].Value, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridCheckBoxColumn Binding="{Binding Bool[9].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[0].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[1].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[2].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[3].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[4].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[5].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[6].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[7].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[8].Value, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[9].Value, UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -72,7 +72,7 @@ namespace RepositoryMonitor
                     Type voPropertyType = entityPropertyValue.GetType();
 
                     // ValueObjectのContentプロパティ情報を取得
-                    var voPropertyInfo = voPropertyType.GetProperty("Content");
+                    var voPropertyInfo = voPropertyType.GetProperty("Content"); // TODO K.I : Contentは手入力なのでやめる
 
                     if (voPropertyInfo != null)
                     {

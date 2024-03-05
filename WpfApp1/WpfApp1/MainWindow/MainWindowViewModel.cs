@@ -1,5 +1,6 @@
 ﻿using Entity.XX;
 using Reactive.Bindings;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace WpfApp1.MainWindow
@@ -26,6 +27,8 @@ namespace WpfApp1.MainWindow
         public ReactivePropertySlim<bool> Bool { get; }
         public ReactivePropertySlim<SomeEnum> SomeEnum { get; }
 
+        public ObservableCollection<DetailViewModel> DataGridSource { get; } = new ObservableCollection<DetailViewModel>();
+
         public AsyncReactiveCommand InitCommand { get; }
         public AsyncReactiveCommand SaveCommand { get; }
 
@@ -47,17 +50,18 @@ namespace WpfApp1.MainWindow
             ComboBoxItems.Value = new List<ComboBoxItemDisplayValue<SomeEnum>>(comboBoxItemList);
         }
 
-        private void InitMediator()
-        {
-            Bool.Subscribe(x =>
-            {
-                InitComboBoxItems();
-            });
-        }
-
-        private void InitModel()
+        private void UpdateEntity()
         {
             _model.LoadEntity();
+        }
+
+        private void InitDataGridSource()
+        {
+            DataGridSource.Clear();
+            foreach (var detailModel in _model.Details)
+            {
+                DataGridSource.Add(new DetailViewModel(detailModel));
+            }
         }
     }
 }

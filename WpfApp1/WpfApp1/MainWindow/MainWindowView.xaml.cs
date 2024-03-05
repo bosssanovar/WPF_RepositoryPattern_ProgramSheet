@@ -86,6 +86,7 @@ namespace WpfApp1.MainWindow
                 await Task.Delay(500);
 
                 _model.Init();
+                InitDataGridSource();
             });
 
             SaveCommand = new AsyncReactiveCommand();
@@ -98,8 +99,10 @@ namespace WpfApp1.MainWindow
 
             ComboBoxItems = new ReactivePropertySlim<List<ComboBoxItemDisplayValue<SomeEnum>>>();
             InitComboBoxItems();
-
-            InitMediator();
+            Bool.Subscribe(x =>
+            {
+                InitComboBoxItems();
+            });
 
             InitializeComponent();
         }
@@ -108,7 +111,8 @@ namespace WpfApp1.MainWindow
         {
             base.OnContentRendered(e);
 
-            InitModel();
+            UpdateEntity();
+            InitDataGridSource();
         }
     }
 }

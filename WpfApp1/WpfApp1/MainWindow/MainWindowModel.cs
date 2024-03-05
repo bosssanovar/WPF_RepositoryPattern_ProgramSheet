@@ -17,6 +17,8 @@ namespace WpfApp1.MainWindow
 
         public ReactivePropertySlim<XXEntity> Entity { get; } = new ReactivePropertySlim<XXEntity>();
 
+        public List<DetailModel> Details { get; set; } = new List<DetailModel>();
+
         private readonly SaveLoadUsecase _saveLoadUsecase;
 
         private readonly InitUsecase _initUsecase;
@@ -43,6 +45,16 @@ namespace WpfApp1.MainWindow
             Debug.WriteLine("LoadEntity");
 
             Entity.Value = _saveLoadUsecase.Load();
+            InitDetails();
+        }
+
+        private void InitDetails()
+        {
+            Details.Clear();
+            foreach (var speakerOnOffEntity in Entity.Value.SpeakerOnOff)
+            {
+                Details.Add(new DetailModel(speakerOnOffEntity));
+            }
         }
 
         internal void Init()
