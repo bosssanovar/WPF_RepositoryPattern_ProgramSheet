@@ -51,7 +51,7 @@ namespace WpfApp1.MainWindow
         private void InitDetails()
         {
             Details.Clear();
-            foreach (var speakerOnOffEntity in Entity.Value.SpeakerOnOff)
+            foreach (var speakerOnOffEntity in Entity.Value.SpeakerOnOff.Details)
             {
                 var detail = new DetailModel(speakerOnOffEntity);
                 detail.ContentChanged += Detail_ContentChanged;

@@ -33,26 +33,15 @@
             set
             {
                 _speakerCount = value;
-                InitSpeakerCount(value.Content);
+                SpeakerOnOff.InitSpeakerCount(value.Content);
             }
         }
 
-        public List<SpeakerOnOffDetailEntity> SpeakerOnOff { get; } = [];
+        public SpeakerOnOffEntity SpeakerOnOff { get; } = new SpeakerOnOffEntity();
 
         public XXEntity()
         {
-            InitSpeakerCount(SpeakerCount_InitValue);
-        }
-
-        private void InitSpeakerCount(int count)
-        {
-            SpeakerOnOff.Clear();
-            for (int i = 0; i < count; i++)
-            {
-                var speakerOnOffDetail = new SpeakerOnOffDetailEntity();
-                speakerOnOffDetail.Init(count);
-                SpeakerOnOff.Add(speakerOnOffDetail);
-            }
+            SpeakerOnOff.InitSpeakerCount(SpeakerCount_InitValue);
         }
 
         public void Init()
@@ -63,7 +52,7 @@
             SomeEnum = new SomeEnumVO(SomeEnum_InitValue);
             SpeakerCount = new SpeakerCountVO(SpeakerCount_InitValue);
 
-            InitSpeakerCount(SpeakerCount.Content);
+            SpeakerOnOff.InitSpeakerCount(SpeakerCount.Content);
         }
 
         private void CurrectSomeEnumIfNeed()
