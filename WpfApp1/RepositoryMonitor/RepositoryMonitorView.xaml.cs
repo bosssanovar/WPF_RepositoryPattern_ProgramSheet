@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,12 +48,11 @@ namespace RepositoryMonitor
         {
             while (true)
             {
-                await DetectDifferenceAsync();
-            }
-        }
+                var task = DetectDifferenceAsync();
+                var task2 = Task.Delay(500);
 
-        private void MyTimerMethod(object? sender, EventArgs e)
-        {
+                await Task.WhenAll(task, task2);
+            }
         }
     }
 }
