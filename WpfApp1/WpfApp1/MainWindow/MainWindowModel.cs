@@ -17,7 +17,7 @@ namespace WpfApp1.MainWindow
 
         public ReactivePropertySlim<XXEntity> Entity { get; } = new ReactivePropertySlim<XXEntity>();
 
-        public List<DetailModel> Details { get; set; } = new List<DetailModel>();
+        public List<DetailModel> Details { get; } = new List<DetailModel>();
 
         private readonly SaveLoadUsecase _saveLoadUsecase;
 
