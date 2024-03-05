@@ -87,6 +87,11 @@ namespace RepositoryMonitor
                         {
                             foreach (var info in infos)
                             {
+                                if (ret.ContainsKey(info.Name))
+                                {
+                                    throw new NotImplementedException($"ISettingInfosで提供されるName値が重複しています: {info.Name}");
+                                }
+
                                 ret[info.Name] = info.Value;
                             }
                         }
