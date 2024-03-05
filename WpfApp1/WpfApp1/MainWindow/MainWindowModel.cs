@@ -53,7 +53,19 @@ namespace WpfApp1.MainWindow
             Details.Clear();
             foreach (var speakerOnOffEntity in Entity.Value.SpeakerOnOff)
             {
-                Details.Add(new DetailModel(speakerOnOffEntity));
+                var detail = new DetailModel(speakerOnOffEntity);
+                detail.ContentChanged += Detail_ContentChanged;
+                Details.Add(detail);
+            }
+        }
+
+        private void Detail_ContentChanged()
+        {
+            if (IsAutoSave)
+            {
+                Debug.WriteLine("Auto Save");
+
+                _saveLoadUsecase.Save(Entity.Value);
             }
         }
 

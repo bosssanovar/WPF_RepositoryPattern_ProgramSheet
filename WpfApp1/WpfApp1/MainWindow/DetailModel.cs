@@ -17,6 +17,8 @@ namespace WpfApp1.MainWindow
 
         public List<ReactivePropertySlim<SpeakerOnOffVO>> SpeakerOnOffs { get; } = [];
 
+        public event Action? ContentChanged;
+
         public DetailModel(SpeakerOnOffDetailEntity entity)
         {
             Entity = entity;
@@ -31,6 +33,7 @@ namespace WpfApp1.MainWindow
                     if (!_isUpdating)
                     {
                         Entity.SpeakerOnOffDetail[index] = x;
+                        ContentChanged?.Invoke();
                     }
                 });
 
