@@ -37,7 +37,7 @@
             }
         }
 
-        public List<SpeakerOnOffDetailEntity> SpeakerOnOff { get; set; } = [];
+        public List<SpeakerOnOffDetailEntity> SpeakerOnOff { get; } = [];
 
         public XXEntity()
         {
