@@ -32,12 +32,12 @@
                         Header="Path" />
                         <GridViewColumn
                         Width="250"
-                        DisplayMemberBinding="{Binding OldValue}"
-                        Header="Old Value" />
-                        <GridViewColumn
-                        Width="250"
                         DisplayMemberBinding="{Binding NewValue}"
                         Header="New Value" />
+                        <GridViewColumn
+                        Width="250"
+                        DisplayMemberBinding="{Binding OldValue}"
+                        Header="Old Value" />
                     </GridView>
                 </ListView.View>
             </ListView>

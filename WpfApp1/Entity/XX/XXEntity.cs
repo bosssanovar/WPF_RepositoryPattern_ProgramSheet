@@ -37,7 +37,7 @@
             }
         }
 
-        public SpeakerOnOffEntity SpeakerOnOff { get; } = new SpeakerOnOffEntity();
+        public SpeakerOnOffEntity SpeakerOnOff { get; private set; } = new SpeakerOnOffEntity();
 
         public XXEntity()
         {
@@ -61,6 +61,14 @@
             {
                 SomeEnum = new SomeEnumVO(SomeEnum_InitValue);
             }
+        }
+
+        public override XXEntity Clone()
+        {
+            var ret = base.Clone();
+            ret.SpeakerOnOff = SpeakerOnOff.Clone();
+
+            return ret;
         }
     }
 }

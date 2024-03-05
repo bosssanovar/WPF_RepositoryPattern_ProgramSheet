@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepositoryMonitor
+namespace Entity
 {
-    public record Item(string Path, string NewValue, string OldValue)
+    public interface ISettingInfos
     {
+        List<(string Name, string Value)> SettingInfos { get;}
     }
 }

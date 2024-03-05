@@ -1,8 +1,20 @@
-﻿namespace Entity.XX
+﻿
+namespace Entity.XX
 {
-    public record TextVO(string Content) : ValueObjectBase<string>(Content), IInputLimit<string>
+    public record TextVO(string Content) : ValueObjectBase<string>(Content), IInputLimit<string>, ISettingInfos
     {
         private const int MaxLength = 10;
+
+        public List<(string Name, string Value)> SettingInfos
+        {
+            get
+            {
+                var ret = new List<(string Name, string Value)> ();
+                ret.Add(("Text", Content));
+
+                return ret;
+            }
+        }
 
         public static string CurrectValue(string value)
         {

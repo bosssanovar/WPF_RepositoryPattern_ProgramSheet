@@ -1,4 +1,5 @@
-﻿using Entity.XX;
+﻿using Entity;
+using Entity.XX;
 using Reactive.Bindings;
 using Repository;
 using System;
@@ -40,7 +41,7 @@ namespace RepositoryMonitor
 
                 if (oldProperties[name] != newProperties[name])
                 {
-                    Items.Insert(0, new Item(name, oldProperties[name], newProperties[name]));
+                    Items.Insert(0, new Item(name, newProperties[name], oldProperties[name]));
                 }
             }
 
@@ -60,28 +61,31 @@ namespace RepositoryMonitor
             // Entityのプロパティ一覧を列挙
             foreach (PropertyInfo entityPropertyInfo in entityPropertyInfos)
             {
-                // ValueObjectプロパティ名を取得
+                // Entity直下のオブジェクトのプロパティ名を取得
                 string entityPropertyName = entityPropertyInfo.Name;
 
-                // ValueObjectオブジェクトを取得
+                // Entity直下のオブジェクトを取得
                 var entityPropertyValue = entityPropertyInfo.GetValue(entity);
 
-                if (entityPropertyValue != null)
+                if (entityPropertyValue is ISettingInfos)
                 {
-                    //  ValueObjectオブジェクトの型を取得
+                    //  Entity直下のオブジェクトの型を取得
                     Type voPropertyType = entityPropertyValue.GetType();
 
-                    // ValueObjectのContentプロパティ情報を取得
-                    var voPropertyInfo = voPropertyType.GetProperty("Content"); // TODO K.I : Contentは手入力なのでやめる
+                    // Entity直下のオブジェクトのSettingInfosプロパティ情報を取得
+                    var voPropertyInfo = voPropertyType.GetProperty("SettingInfos");
 
                     if (voPropertyInfo != null)
                     {
-                        // ValueObjectのContentプロパティ値を取得
+                        // Entity直下のオブジェクトのContentプロパティ値を取得
                         var voPropertyValue = voPropertyInfo.GetValue(entityPropertyValue);
 
-                        if (voPropertyValue != null)
+                        if (voPropertyValue is List<(string Name, string Value)> infos)
                         {
-                            ret[entityPropertyName] = voPropertyValue.ToString() ?? "{NULL}";
+                            foreach (var info in infos)
+                            {
+                                ret[info.Name] = info.Value;
+                            }
                         }
                     }
                 }

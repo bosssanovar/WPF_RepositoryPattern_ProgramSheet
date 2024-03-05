@@ -6,10 +6,21 @@ using System.Threading.Tasks;
 
 namespace Entity.XX
 {
-    public record SpeakerCountVO(int Content) : ValueObjectBase<int>(Content), IInputLimit<int>
+    public record SpeakerCountVO(int Content) : ValueObjectBase<int>(Content), IInputLimit<int>, ISettingInfos
     {
         private const int MinValue = 1;
         private const int MaxValue = 640;
+
+        public List<(string Name, string Value)> SettingInfos
+        {
+            get
+            {
+                var ret = new List<(string Name, string Value)> ();
+                ret.Add(("SpeakerCount", Content.ToString()));
+
+                return ret;
+            }
+        }
 
         public static int CurrectValue(int value)
         {

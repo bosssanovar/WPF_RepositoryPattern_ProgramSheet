@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Entity.XX
 {
-    public record BoolVO(bool Content) : ValueObjectBase<bool>(Content), IInputLimit<bool>
+    public record BoolVO(bool Content) : ValueObjectBase<bool>(Content), IInputLimit<bool>, ISettingInfos
     {
+        public List<(string Name, string Value)> SettingInfos
+        {
+            get
+            {
+                var ret = new List<(string Name, string Value)> ();
+                ret.Add(("Bool", Content.ToString()));
+                return ret;
+            }
+        }
         public static bool CurrectValue(bool value)
         {
             return value;

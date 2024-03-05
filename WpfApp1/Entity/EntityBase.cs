@@ -14,7 +14,7 @@
             return Identifier == other.Identifier;
         }
 
-        public T Clone()
+        virtual public T Clone()
         {
             return (T)MemberwiseClone();
         }
