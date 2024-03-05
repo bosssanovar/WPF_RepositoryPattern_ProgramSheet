@@ -26,26 +26,29 @@ namespace RepositoryMonitor
 
         public AsyncReactiveCommand ClearCommand { get; } = new AsyncReactiveCommand();
 
-        private void DetectDifference()
+        private async Task DetectDifferenceAsync()
         {
-            _oldEntity ??= _repository.Load();
-
-            var newEntity = _repository.Load();
-
-            var oldProperties = GetEntityProperties(_oldEntity);
-            var newProperties = GetEntityProperties(newEntity);
-
-            foreach (var name in oldProperties.Keys)
+            await Task.Run(() =>
             {
-                if (!newProperties.ContainsKey(name)) continue;
+                _oldEntity ??= _repository.Load();
 
-                if (oldProperties[name] != newProperties[name])
+                var newEntity = _repository.Load();
+
+                var oldProperties = GetEntityProperties(_oldEntity);
+                var newProperties = GetEntityProperties(newEntity);
+
+                foreach (var name in oldProperties.Keys)
                 {
-                    Items.Insert(0, new Item(name, newProperties[name], oldProperties[name]));
-                }
-            }
+                    if (!newProperties.ContainsKey(name)) continue;
 
-            _oldEntity = newEntity;
+                    if (oldProperties[name] != newProperties[name])
+                    {
+                        Items.Insert(0, new Item(name, newProperties[name], oldProperties[name]));
+                    }
+                }
+
+                _oldEntity = newEntity;
+            });
         }
 
         private static Dictionary<string, string> GetEntityProperties(XXEntity entity)
