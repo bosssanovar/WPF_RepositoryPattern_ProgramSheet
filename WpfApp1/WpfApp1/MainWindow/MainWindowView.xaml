@@ -49,6 +49,8 @@
                   CanUserResizeRows="False" CanUserSortColumns="False"
                   SelectionUnit="Cell" SelectionMode="Single"
                   HeadersVisibility="None"
+                  VirtualizingPanel.IsVirtualizing="True" EnableColumnVirtualization="True" EnableRowVirtualization="True"
+                  VirtualizingPanel.ScrollUnit="Pixel" VirtualizingPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True"
                   ItemsSource="{Binding DataGridSource}" MaxWidth="500" MaxHeight="300">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[0].Value, UpdateSourceTrigger=PropertyChanged}"/>
