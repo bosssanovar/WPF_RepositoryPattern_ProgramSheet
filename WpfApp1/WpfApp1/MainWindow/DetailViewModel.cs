@@ -31,10 +31,14 @@ namespace WpfApp1.MainWindow
                     x => x.SpeakerOnOffDetail[index].Content,
                     x =>
                     {
-                        var currected = SpeakerOnOffVO.CurrectValue(x);
-                        _model.Entity.Value.SpeakerOnOffDetail[index] = new(currected);
+                        var oldValue = _model.Entity.Value.SpeakerOnOffDetail[index].Content;
+                        var newValue = SpeakerOnOffVO.CurrectValue(x);
 
-                        _model.ForceNotify();
+                        if (oldValue != newValue)
+                        {
+                            _model.Entity.Value.SpeakerOnOffDetail[index] = new(newValue);
+                            _model.ForceNotify();
+                        }
 
                         return _model.Entity.Value;
                     });

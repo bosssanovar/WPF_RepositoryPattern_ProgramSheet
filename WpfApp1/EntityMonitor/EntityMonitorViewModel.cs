@@ -70,31 +70,18 @@ namespace EntityMonitor
                 // Entity直下のオブジェクトを取得
                 var entityPropertyValue = entityPropertyInfo.GetValue(entity);
 
-                if (entityPropertyValue is ISettingInfos)
+                if (entityPropertyValue is ISettingInfos settingInfos)
                 {
-                    //  Entity直下のオブジェクトの型を取得
-                    Type voPropertyType = entityPropertyValue.GetType();
+                    var infos = settingInfos.SettingInfos;
 
-                    // Entity直下のオブジェクトのSettingInfosプロパティ情報を取得
-                    var voPropertyInfo = voPropertyType.GetProperty("SettingInfos");
-
-                    if (voPropertyInfo != null)
+                    foreach (var info in infos)
                     {
-                        // Entity直下のオブジェクトのContentプロパティ値を取得
-                        var voPropertyValue = voPropertyInfo.GetValue(entityPropertyValue);
-
-                        if (voPropertyValue is List<(string Name, string Value)> infos)
+                        if (ret.ContainsKey(info.Name))
                         {
-                            foreach (var info in infos)
-                            {
-                                if (ret.ContainsKey(info.Name))
-                                {
-                                    throw new NotImplementedException($"ISettingInfosで提供されるName値が重複しています: {info.Name}");
-                                }
-
-                                ret[info.Name] = info.Value;
-                            }
+                            throw new NotImplementedException($"ISettingInfosで提供されるName値が重複しています: {info.Name}");
                         }
+
+                        ret[info.Name] = info.Value;
                     }
                 }
             }

@@ -25,10 +25,14 @@ namespace WpfApp1.MainWindow
                 x => x.Text.Content,
                 x =>
                 {
-                    var currected = TextVO.CurrectValue(x);
-                    _model.Entity.Value.Text = new(currected);
+                    var oldValue = _model.Entity.Value.Text.Content;
+                    var newValue = TextVO.CurrectValue(x);
 
-                    _model.ForceNotify();
+                    if (newValue != oldValue)
+                    {
+                        _model.Entity.Value.Text = new(newValue);
+                        _model.ForceNotify();
+                    }
 
                     return _model.Entity.Value;
                 });
@@ -38,10 +42,14 @@ namespace WpfApp1.MainWindow
                 x => x.Number.Content,
                 x =>
                 {
-                    var currected = NumberVO.CurrectValue(x);
-                    _model.Entity.Value.Number = new(currected);
+                    var oldValue = _model.Entity.Value.Number.Content;
+                    var newValue = NumberVO.CurrectValue(x);
 
-                    _model.ForceNotify();
+                    if (newValue != oldValue)
+                    {
+                        _model.Entity.Value.Number = new(newValue);
+                        _model.ForceNotify();
+                    }
 
                     return _model.Entity.Value;
                 });
@@ -51,10 +59,14 @@ namespace WpfApp1.MainWindow
                 x => x.Bool.Content,
                 x =>
                 {
-                    var currected = BoolVO.CurrectValue(x);
-                    _model.Entity.Value.Bool = new(currected);
+                    var oldValue = _model.Entity.Value.Bool.Content;
+                    var newValue = BoolVO.CurrectValue(x);
 
-                    _model.ForceNotify();
+                    if (newValue != oldValue)
+                    {
+                        _model.Entity.Value.Bool = new(newValue);
+                        _model.ForceNotify();
+                    }
 
                     return _model.Entity.Value;
                 });
@@ -64,10 +76,14 @@ namespace WpfApp1.MainWindow
                 x => x.SomeEnum.Content,
                 x =>
                 {
-                    var currected = SomeEnumVO.CurrectValue(x);
-                    _model.Entity.Value.SomeEnum = new(currected);
+                    var oldValue = _model.Entity.Value.SomeEnum.Content;
+                    var newValue = SomeEnumVO.CurrectValue(x);
 
-                    _model.ForceNotify();
+                    if (newValue != oldValue)
+                    {
+                        _model.Entity.Value.SomeEnum = new(newValue);
+                        _model.ForceNotify();
+                    }
 
                     return _model.Entity.Value;
                 });
