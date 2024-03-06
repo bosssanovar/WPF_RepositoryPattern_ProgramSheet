@@ -34,10 +34,6 @@ namespace RepositoryMonitor
                 Items.Clear();
             });
 
-
-            // 複数スレッドで使用されるコレクションへの参加
-            BindingOperations.EnableCollectionSynchronization(Items, new object());
-
             InitializeComponent();
 
             SetupTimer();

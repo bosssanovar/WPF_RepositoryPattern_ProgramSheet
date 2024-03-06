@@ -43,7 +43,7 @@ namespace RepositoryMonitor
 
                     if (oldProperties[name] != newProperties[name])
                     {
-                        Items.Insert(0, new Item(name, newProperties[name], oldProperties[name]));
+                        Items.InsertOnScheduler(0, new Item(name, newProperties[name], oldProperties[name]));
                     }
                 }
 
