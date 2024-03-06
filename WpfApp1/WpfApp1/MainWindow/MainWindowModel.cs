@@ -34,8 +34,6 @@ namespace WpfApp1.MainWindow
             {
                 if (IsAutoSave)
                 {
-                    Debug.WriteLine("Auto Save");
-
                     _saveLoadUsecase.Save(x);
                 }
             });
@@ -43,8 +41,6 @@ namespace WpfApp1.MainWindow
 
         public void LoadEntity()
         {
-            Debug.WriteLine("LoadEntity");
-
             Entity.Value = _saveLoadUsecase.Load();
             InitDetails();
         }
@@ -64,24 +60,18 @@ namespace WpfApp1.MainWindow
         {
             if (IsAutoSave)
             {
-                Debug.WriteLine("Auto Save");
-
                 _saveLoadUsecase.Save(Entity.Value);
             }
         }
 
         internal void Init()
         {
-            Debug.WriteLine("Init");
-
             _initUsecase.Init();
             LoadEntity();
         }
 
         internal void Save()
         {
-            Debug.WriteLine("Save");
-
             _saveLoadUsecase.Save(Entity.Value);
         }
 

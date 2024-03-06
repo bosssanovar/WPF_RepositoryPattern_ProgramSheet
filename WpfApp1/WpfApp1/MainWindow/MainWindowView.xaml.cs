@@ -25,8 +25,6 @@ namespace WpfApp1.MainWindow
                 x => x.Text.Content,
                 x =>
                 {
-                    Debug.WriteLine("Text ConvertBack");
-
                     var currected = TextVO.CurrectValue(x);
                     _model.Entity.Value.Text = new(currected);
 
@@ -40,8 +38,6 @@ namespace WpfApp1.MainWindow
                 x => x.Number.Content,
                 x =>
                 {
-                    Debug.WriteLine("Number ConvertBack");
-
                     var currected = NumberVO.CurrectValue(x);
                     _model.Entity.Value.Number = new(currected);
 
@@ -55,8 +51,6 @@ namespace WpfApp1.MainWindow
                 x => x.Bool.Content,
                 x =>
                 {
-                    Debug.WriteLine("Bool ConvertBack");
-
                     var currected = BoolVO.CurrectValue(x);
                     _model.Entity.Value.Bool = new(currected);
 
@@ -70,8 +64,6 @@ namespace WpfApp1.MainWindow
                 x => x.SomeEnum.Content,
                 x =>
                 {
-                    Debug.WriteLine("SomeEnum ConvertBack");
-
                     var currected = SomeEnumVO.CurrectValue(x);
                     _model.Entity.Value.SomeEnum = new(currected);
 
