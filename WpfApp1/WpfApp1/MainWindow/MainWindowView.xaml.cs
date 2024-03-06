@@ -25,68 +25,56 @@ namespace WpfApp1.MainWindow
                 x => x.Text.Content,
                 x =>
                 {
-                    var oldValue = _model.Entity.Value.Text.Content;
-                    var newValue = TextVO.CurrectValue(x);
+                    var corrected = TextVO.CurrectValue(x);
+                    _model.Entity.Value.Text = new(corrected);
 
-                    if (newValue != oldValue)
-                    {
-                        _model.Entity.Value.Text = new(newValue);
-                        _model.ForceNotify();
-                    }
+                    _model.ForceNotify();
 
                     return _model.Entity.Value;
-                });
+                },
+                ReactivePropertyMode.DistinctUntilChanged);
 
             Number = _model.Entity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
                 x => x.Number.Content,
                 x =>
                 {
-                    var oldValue = _model.Entity.Value.Number.Content;
-                    var newValue = NumberVO.CurrectValue(x);
+                    var corrected = NumberVO.CurrectValue(x);
+                    _model.Entity.Value.Number = new(corrected);
 
-                    if (newValue != oldValue)
-                    {
-                        _model.Entity.Value.Number = new(newValue);
-                        _model.ForceNotify();
-                    }
+                    _model.ForceNotify();
 
                     return _model.Entity.Value;
-                });
+                },
+                ReactivePropertyMode.DistinctUntilChanged);
 
             Bool = _model.Entity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
                 x => x.Bool.Content,
                 x =>
                 {
-                    var oldValue = _model.Entity.Value.Bool.Content;
-                    var newValue = BoolVO.CurrectValue(x);
+                    var corrected = BoolVO.CurrectValue(x);
+                    _model.Entity.Value.Bool = new(corrected);
 
-                    if (newValue != oldValue)
-                    {
-                        _model.Entity.Value.Bool = new(newValue);
-                        _model.ForceNotify();
-                    }
+                    _model.ForceNotify();
 
                     return _model.Entity.Value;
-                });
+                },
+                ReactivePropertyMode.DistinctUntilChanged);
 
             SomeEnum = _model.Entity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
                 x => x.SomeEnum.Content,
                 x =>
                 {
-                    var oldValue = _model.Entity.Value.SomeEnum.Content;
-                    var newValue = SomeEnumVO.CurrectValue(x);
+                    var corrected = SomeEnumVO.CurrectValue(x);
+                    _model.Entity.Value.SomeEnum = new(corrected);
 
-                    if (newValue != oldValue)
-                    {
-                        _model.Entity.Value.SomeEnum = new(newValue);
-                        _model.ForceNotify();
-                    }
+                    _model.ForceNotify();
 
                     return _model.Entity.Value;
-                });
+                },
+                ReactivePropertyMode.DistinctUntilChanged);
 
             DataGridSource = _model.Details.ToReadOnlyReactiveCollection(x => new DetailViewModel(x));
 
