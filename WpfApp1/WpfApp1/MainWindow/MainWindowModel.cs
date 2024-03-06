@@ -2,6 +2,7 @@
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Reactive.Linq;
 using System.Security.Cryptography.Xml;
@@ -17,7 +18,7 @@ namespace WpfApp1.MainWindow
 
         public ReactivePropertySlim<XXEntity> Entity { get; } = new ReactivePropertySlim<XXEntity>();
 
-        public List<DetailModel> Details { get; } = new List<DetailModel>();
+        public ObservableCollection<DetailModel> Details { get; } = new ObservableCollection<DetailModel>();
 
         private readonly SaveLoadUsecase _saveLoadUsecase;
 

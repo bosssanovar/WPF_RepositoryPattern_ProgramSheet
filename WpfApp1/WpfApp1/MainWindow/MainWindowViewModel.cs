@@ -27,7 +27,7 @@ namespace WpfApp1.MainWindow
         public ReactivePropertySlim<bool> Bool { get; }
         public ReactivePropertySlim<SomeEnum> SomeEnum { get; }
 
-        public ObservableCollection<DetailViewModel> DataGridSource { get; } = new ObservableCollection<DetailViewModel>();
+        public ReadOnlyReactiveCollection<DetailViewModel> DataGridSource { get; }
 
         public AsyncReactiveCommand InitCommand { get; }
         public AsyncReactiveCommand SaveCommand { get; }
@@ -53,15 +53,6 @@ namespace WpfApp1.MainWindow
         private void UpdateEntity()
         {
             _model.LoadEntity();
-        }
-
-        private void InitDataGridSource()
-        {
-            DataGridSource.Clear();
-            foreach (var detailModel in _model.Details)
-            {
-                DataGridSource.Add(new DetailViewModel(detailModel));
-            }
         }
     }
 }

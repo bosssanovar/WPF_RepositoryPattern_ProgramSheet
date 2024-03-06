@@ -80,13 +80,14 @@ namespace WpfApp1.MainWindow
                     return _model.Entity.Value;
                 });
 
+            DataGridSource = _model.Details.ToReadOnlyReactiveCollection(x => new DetailViewModel(x));
+
             InitCommand = new AsyncReactiveCommand();
             InitCommand.Subscribe(async () =>
             {
                 await Task.Delay(500);
 
                 _model.Init();
-                InitDataGridSource();
             });
 
             SaveCommand = new AsyncReactiveCommand();
@@ -112,7 +113,6 @@ namespace WpfApp1.MainWindow
             base.OnContentRendered(e);
 
             UpdateEntity();
-            InitDataGridSource();
         }
     }
 }
