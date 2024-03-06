@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepositoryMonitor
+namespace EntityMonitor
 {
     public record Item(string Path, string NewValue, string OldValue)
     {

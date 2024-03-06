@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Entity\Entity.csproj" />
-    <ProjectReference Include="..\RepositoryMonitor\RepositoryMonitor.csproj" />
+    <ProjectReference Include="..\RepositoryMonitor\EntityMonitor.csproj" />
     <ProjectReference Include="..\Usecase\Usecase.csproj" />
   </ItemGroup>
 

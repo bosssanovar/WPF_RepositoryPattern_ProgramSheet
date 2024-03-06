@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Repository;
-using RepositoryMonitor;
+using EntityMonitor;
 using System.Windows;
 using Usecase;
 using WpfApp1.MainWindow;
@@ -25,7 +25,7 @@ namespace WpfApp1
             services.AddTransient<MainWindowModel>();
             services.AddTransient<MainWindowView>();
 
-            services.AddTransient<RepositoryMonitorView>();
+            services.AddTransient<EntityMonitorView>();
 
             services.AddTransient<SetupModel>();
             services.AddTransient<SetupView>();
@@ -35,7 +35,7 @@ namespace WpfApp1
             var setupWindow = provider.GetRequiredService<SetupView>();
             var mainWindow = provider.GetRequiredService<MainWindowView>();
             MainWindow = mainWindow;
-            var entityMonitor = provider.GetRequiredService<RepositoryMonitorView>();
+            var entityMonitor = provider.GetRequiredService<EntityMonitorView>();
 
             entityMonitor.Show();
             setupWindow.ShowDialog();

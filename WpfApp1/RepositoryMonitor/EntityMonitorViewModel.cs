@@ -11,13 +11,13 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepositoryMonitor
+namespace EntityMonitor
 {
-    public partial class RepositoryMonitorView : INotifyPropertyChanged
+    public partial class EntityMonitorView : INotifyPropertyChanged
     {
-#pragma warning disable CS0067 // イベント 'RepositoryMonitorView.PropertyChanged' は使用されていません
+#pragma warning disable CS0067 // イベント 'EntityMonitorView.PropertyChanged' は使用されていません
         public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore CS0067 // イベント 'RepositoryMonitorView.PropertyChanged' は使用されていません
+#pragma warning restore CS0067 // イベント 'EntityMonitorView.PropertyChanged' は使用されていません
 
         readonly IXXRepository _repository;
         XXEntity? _oldEntity;

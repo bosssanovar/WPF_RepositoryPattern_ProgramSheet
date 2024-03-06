@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
 using Repository;
-using RepositoryMonitor;
+using EntityMonitor;
 using System.Diagnostics;
 using System.Windows;
 using Usecase;

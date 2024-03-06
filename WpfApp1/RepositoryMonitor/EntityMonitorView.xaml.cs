@@ -16,14 +16,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace RepositoryMonitor
+namespace EntityMonitor
 {
     /// <summary>
-    /// RepositoryMonitorView.xaml の相互作用ロジック
+    /// EntityMonitorView.xaml の相互作用ロジック
     /// </summary>
-    public partial class RepositoryMonitorView : Window
+    public partial class EntityMonitorView : Window
     {
-        public RepositoryMonitorView(IXXRepository repository)
+        public EntityMonitorView(IXXRepository repository)
         {
             _repository = repository;
 
