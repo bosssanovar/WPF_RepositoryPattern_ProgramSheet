@@ -23,7 +23,7 @@ namespace WpfApp1.MainWindow
             _model = model;
 
             var count = _model.Entity.Value.SpeakerOnOffDetail.Count;
-            for(int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 int index = i;
                 var sp = _model.Entity.ToReactivePropertySlimAsSynchronized(
@@ -37,8 +37,7 @@ namespace WpfApp1.MainWindow
                         _model.ForceNotify();
 
                         return _model.Entity.Value;
-                    }
-                    );
+                    });
 
                 SpeakerOnOff.Add(sp);
             }

@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Repository.csproj" />
     <ProjectReference Include="..\Entity\Entity.csproj" />
     <ProjectReference Include="..\RepositoryMonitor\RepositoryMonitor.csproj" />
     <ProjectReference Include="..\Usecase\Usecase.csproj" />
