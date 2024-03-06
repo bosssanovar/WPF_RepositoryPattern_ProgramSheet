@@ -32,7 +32,8 @@ namespace WpfApp1.MainWindow
 
                     return _model.Entity.Value;
                 },
-                ReactivePropertyMode.DistinctUntilChanged);
+                ReactivePropertyMode.DistinctUntilChanged)
+                .AddTo(_disposable);
 
             Number = _model.Entity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
@@ -46,7 +47,8 @@ namespace WpfApp1.MainWindow
 
                     return _model.Entity.Value;
                 },
-                ReactivePropertyMode.DistinctUntilChanged);
+                ReactivePropertyMode.DistinctUntilChanged)
+                .AddTo(_disposable);
 
             Bool = _model.Entity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
@@ -60,7 +62,8 @@ namespace WpfApp1.MainWindow
 
                     return _model.Entity.Value;
                 },
-                ReactivePropertyMode.DistinctUntilChanged);
+                ReactivePropertyMode.DistinctUntilChanged)
+                .AddTo(_disposable);
 
             SomeEnum = _model.Entity.ToReactivePropertySlimAsSynchronized(
                 x => x.Value,
@@ -74,9 +77,11 @@ namespace WpfApp1.MainWindow
 
                     return _model.Entity.Value;
                 },
-                ReactivePropertyMode.DistinctUntilChanged);
+                ReactivePropertyMode.DistinctUntilChanged)
+                .AddTo(_disposable);
 
-            DataGridSource = _model.Details.ToReadOnlyReactiveCollection(x => new DetailViewModel(x));
+            DataGridSource = _model.Details.ToReadOnlyReactiveCollection(x => new DetailViewModel(x))
+                .AddTo(_disposable);
 
             InitCommand = new AsyncReactiveCommand();
             InitCommand.Subscribe(async () =>
@@ -84,7 +89,8 @@ namespace WpfApp1.MainWindow
                 await Task.Delay(500);
 
                 _model.Init();
-            });
+            })
+            .AddTo(_disposable);
 
             SaveCommand = new AsyncReactiveCommand();
             SaveCommand.Subscribe(async () =>
@@ -92,14 +98,16 @@ namespace WpfApp1.MainWindow
                 await Task.Delay(500);
 
                 _model.Save();
-            });
+            })
+            .AddTo(_disposable);
 
             ComboBoxItems = new ReactivePropertySlim<List<ComboBoxItemDisplayValue<SomeEnum>>>();
             InitComboBoxItems();
             Bool.Subscribe(x =>
             {
                 InitComboBoxItems();
-            });
+            })
+            .AddTo(_disposable);
 
             InitializeComponent();
         }
@@ -109,6 +117,11 @@ namespace WpfApp1.MainWindow
             base.OnContentRendered(e);
 
             UpdateEntity();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _disposable.Dispose();
         }
     }
 }

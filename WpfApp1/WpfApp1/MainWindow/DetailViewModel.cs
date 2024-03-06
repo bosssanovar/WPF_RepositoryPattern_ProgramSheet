@@ -5,16 +5,19 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WpfApp1.MainWindow
 {
-    public class DetailViewModel : INotifyPropertyChanged
+    public class DetailViewModel : INotifyPropertyChanged, IDisposable
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private DetailModel _model;
+
+        private CompositeDisposable _disposable = new CompositeDisposable();
 
         public List<ReactivePropertySlim<bool>> SpeakerOnOff { get; set; } = [];
 
@@ -38,10 +41,16 @@ namespace WpfApp1.MainWindow
 
                         return _model.Entity.Value;
                     },
-                    ReactivePropertyMode.DistinctUntilChanged);
+                    ReactivePropertyMode.DistinctUntilChanged)
+                    .AddTo(_disposable);
 
                 SpeakerOnOff.Add(sp);
             }
+        }
+
+        public void Dispose()
+        {
+            _disposable.Dispose();
         }
     }
 }

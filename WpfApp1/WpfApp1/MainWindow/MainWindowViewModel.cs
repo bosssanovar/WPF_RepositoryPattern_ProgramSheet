@@ -2,6 +2,7 @@
 using Reactive.Bindings;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Reactive.Disposables;
 
 namespace WpfApp1.MainWindow
 {
@@ -12,6 +13,8 @@ namespace WpfApp1.MainWindow
 #pragma warning restore CS0067 // イベント 'MainWindow.PropertyChanged' は使用されていません
 
         private readonly MainWindowModel _model;
+
+        private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
         public bool IsAutoSave
         {
