@@ -22,15 +22,24 @@ namespace WpfApp1.MainWindow
         {
             _model = model;
 
-            foreach(var seakerOnOff in _model.SpeakerOnOffs)
+            var count = _model.Entity.Value.SpeakerOnOffDetail.Count;
+            for(int i = 0; i < count; i++)
             {
-                ReactivePropertySlim<bool> sp = seakerOnOff.ToReactivePropertySlimAsSynchronized(
+                int index = i;
+                var sp = _model.Entity.ToReactivePropertySlimAsSynchronized(
                     x => x.Value,
-                    x => x.Content,
+                    x => x.SpeakerOnOffDetail[index].Content,
                     x =>
                     {
-                        return new SpeakerOnOffVO(x);
-                    });
+                        var currected = SpeakerOnOffVO.CurrectValue(x);
+                        _model.Entity.Value.SpeakerOnOffDetail[index] = new(currected);
+
+                        _model.ForceNotify();
+
+                        return _model.Entity.Value;
+                    }
+                    );
+
                 SpeakerOnOff.Add(sp);
             }
         }

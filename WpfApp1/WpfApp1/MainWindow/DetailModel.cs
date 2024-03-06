@@ -11,48 +11,23 @@ namespace WpfApp1.MainWindow
 {
     public class DetailModel
     {
-        private bool _isUpdating = false;
-
-        public SpeakerOnOffDetailEntity Entity { get; private set; }
-
-        public List<ReactivePropertySlim<SpeakerOnOffVO>> SpeakerOnOffs { get; } = [];
+        public ReactivePropertySlim<SpeakerOnOffDetailEntity> Entity { get; }
 
         public event Action? ContentChanged;
 
         public DetailModel(SpeakerOnOffDetailEntity entity)
         {
-            Entity = entity;
+            Entity = new ReactivePropertySlim<SpeakerOnOffDetailEntity>(entity);
 
-            for (int i = 0; i < Entity.SpeakerOnOffDetail.Count; i++)
+            Entity.Subscribe(x =>
             {
-                SpeakerOnOffVO? sp = Entity.SpeakerOnOffDetail[i];
-                var reactiveSp = new ReactivePropertySlim<SpeakerOnOffVO>(sp);
-                int index = i;
-                reactiveSp.Subscribe(x => 
-                {
-                    if (!_isUpdating)
-                    {
-                        Entity.SpeakerOnOffDetail[index] = x;
-                        ContentChanged?.Invoke();
-                    }
-                });
-
-                SpeakerOnOffs.Add(reactiveSp);
-            }
+                ContentChanged?.Invoke();
+            });
         }
 
-        public void Update(SpeakerOnOffDetailEntity entity)
+        internal void ForceNotify()
         {
-            _isUpdating = true;
-
-            Entity = entity;
-
-            for(int i = 0; i < SpeakerOnOffs.Count; i++)
-            {
-                SpeakerOnOffs[i].Value = entity.SpeakerOnOffDetail[i];
-            }
-
-            _isUpdating = false;
+            Entity.ForceNotify();
         }
     }
 }
