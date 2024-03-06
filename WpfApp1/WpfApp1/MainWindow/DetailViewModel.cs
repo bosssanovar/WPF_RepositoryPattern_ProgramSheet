@@ -22,7 +22,6 @@ namespace WpfApp1.MainWindow
         {
             _model = model;
 
-            var count = _model.SpeakerOnOffs.Count;
             foreach(var seakerOnOff in _model.SpeakerOnOffs)
             {
                 ReactivePropertySlim<bool> sp = seakerOnOff.ToReactivePropertySlimAsSynchronized(
