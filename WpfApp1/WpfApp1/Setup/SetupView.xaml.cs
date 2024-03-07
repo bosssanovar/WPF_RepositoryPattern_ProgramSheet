@@ -38,16 +38,18 @@ namespace WpfApp1.Setup
                     _model.ForceNotify();
 
                     return _model.Entity.Value;
-                }
-                );
+                },
+                ReactivePropertyMode.DistinctUntilChanged)
+                .AddTo(_disposables);
 
             SaveCommand.Subscribe(async () =>
-            {
-                await Task.Delay(500);
-                _model.Save();
+                {
+                    await Task.Delay(500);
+                    _model.Save();
 
-                Close();
-            });
+                    Close();
+                })
+                .AddTo(_disposables);
 
             InitializeComponent();
         }
@@ -63,6 +65,11 @@ namespace WpfApp1.Setup
             // フォーカスを移動する
             FrameworkElement element = (FrameworkElement)FocusManager.GetFocusedElement(this);
             element.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _disposables.Dispose();
         }
     }
 }

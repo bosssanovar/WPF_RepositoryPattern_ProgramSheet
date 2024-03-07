@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Setup"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
-        Title="SetupView" Height="200" Width="300">
+        Title="SetupView" Height="200" Width="300" Closing="Window_Closing">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="36,71,0,0" TextWrapping="Wrap" Text="Speaker数" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="113,70,0,0" TextWrapping="Wrap" Text="{Binding SpeakerCount.Value}"
