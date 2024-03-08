@@ -32,10 +32,11 @@ namespace WpfApp1.MainWindow
 
         public ReadOnlyReactiveCollection<DetailViewModel> DataGridSource { get; }
 
-        public AsyncReactiveCommand InitCommand { get; }
-        public AsyncReactiveCommand SaveCommand { get; }
+        public AsyncReactiveCommand InitCommand { get; } = new AsyncReactiveCommand();
+        public AsyncReactiveCommand SaveCommand { get; } = new AsyncReactiveCommand();
 
-        public ReactivePropertySlim<List<ComboBoxItemDisplayValue<SomeEnum>>> ComboBoxItems { get; private set; }
+        public ReactivePropertySlim<List<ComboBoxItemDisplayValue<SomeEnum>>> ComboBoxItems { get; private set; } =
+            new ReactivePropertySlim<List<ComboBoxItemDisplayValue<SomeEnum>>>();
 
         private void InitComboBoxItems()
         {

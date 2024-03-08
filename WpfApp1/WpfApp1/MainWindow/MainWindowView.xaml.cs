@@ -83,7 +83,6 @@ namespace WpfApp1.MainWindow
             DataGridSource = _model.Details.ToReadOnlyReactiveCollection(x => new DetailViewModel(x))
                 .AddTo(_disposable);
 
-            InitCommand = new AsyncReactiveCommand();
             InitCommand.Subscribe(async () =>
             {
                 await Task.Delay(500);
@@ -92,7 +91,6 @@ namespace WpfApp1.MainWindow
             })
             .AddTo(_disposable);
 
-            SaveCommand = new AsyncReactiveCommand();
             SaveCommand.Subscribe(async () =>
             {
                 await Task.Delay(500);
@@ -101,7 +99,6 @@ namespace WpfApp1.MainWindow
             })
             .AddTo(_disposable);
 
-            ComboBoxItems = new ReactivePropertySlim<List<ComboBoxItemDisplayValue<SomeEnum>>>();
             InitComboBoxItems();
             Bool.Subscribe(x =>
             {
