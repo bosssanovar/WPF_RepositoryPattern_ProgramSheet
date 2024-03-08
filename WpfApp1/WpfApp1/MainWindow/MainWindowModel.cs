@@ -12,18 +12,53 @@ using Usecase;
 
 namespace WpfApp1.MainWindow
 {
+    /// <summary>
+    /// MainWindowのModelクラス
+    /// </summary>
     public class MainWindowModel
     {
-        public bool IsAutoSave { get; set; }
+        #region Constants -------------------------------------------------------------------------------------
 
-        public ReactivePropertySlim<XXEntity> Entity { get; } = new ReactivePropertySlim<XXEntity>();
+        #endregion --------------------------------------------------------------------------------------------
 
-        public ObservableCollection<DetailModel> Details { get; } = new ObservableCollection<DetailModel>();
+        #region Fields ----------------------------------------------------------------------------------------
 
         private readonly SaveLoadUsecase _saveLoadUsecase;
 
         private readonly InitUsecase _initUsecase;
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 自動保存するか
+        /// </summary>
+        public bool IsAutoSave { get; set; }
+
+        /// <summary>
+        /// エンティティ
+        /// </summary>
+        public ReactivePropertySlim<XXEntity> Entity { get; } = new ReactivePropertySlim<XXEntity>();
+
+        /// <summary>
+        /// コレクション型のModel
+        /// </summary>
+        public ObservableCollection<DetailModel> Details { get; } = new ObservableCollection<DetailModel>();
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="saveLoadUsecase">保存・読み込みユースケース</param>
+        /// <param name="initUsecase">初期化ユースケース</param>
         public MainWindowModel(SaveLoadUsecase saveLoadUsecase, InitUsecase initUsecase)
         {
             _saveLoadUsecase = saveLoadUsecase;
@@ -39,11 +74,57 @@ namespace WpfApp1.MainWindow
             });
         }
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods ---------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Entityを読み込みます。
+        /// </summary>
         public void LoadEntity()
         {
             Entity.Value = _saveLoadUsecase.Load();
             InitDetails();
         }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal ----------------------------------------------------------------------------
+
+        /// <summary>
+        /// Entityを初期化します。
+        /// </summary>
+        internal void Init()
+        {
+            _initUsecase.Init();
+            LoadEntity();
+        }
+
+        /// <summary>
+        /// Entityを保存します。
+        /// </summary>
+        internal void Save()
+        {
+            _saveLoadUsecase.Save(Entity.Value);
+        }
+
+        /// <summary>
+        /// Entityの変更通知発行
+        /// </summary>
+        internal void ForceNotify()
+        {
+            Entity.ForceNotify();
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
 
         private void InitDetails()
         {
@@ -58,7 +139,7 @@ namespace WpfApp1.MainWindow
 
         private void ClearDetails()
         {
-            foreach(var detail in Details)
+            foreach (var detail in Details)
             {
                 detail.ContentChanged -= Detail_ContentChanged;
             }
@@ -74,20 +155,12 @@ namespace WpfApp1.MainWindow
             }
         }
 
-        internal void Init()
-        {
-            _initUsecase.Init();
-            LoadEntity();
-        }
+        #endregion --------------------------------------------------------------------------------------------
 
-        internal void Save()
-        {
-            _saveLoadUsecase.Save(Entity.Value);
-        }
+        #region Methods - override ----------------------------------------------------------------------------
 
-        internal void ForceNotify()
-        {
-            Entity.ForceNotify();
-        }
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
     }
 }

@@ -1,13 +1,7 @@
 ﻿using Entity.XX;
-using Microsoft.Extensions.DependencyInjection;
 using Reactive.Bindings;
 using Reactive.Bindings.Extensions;
-using Repository;
-using EntityMonitor;
-using System.Diagnostics;
 using System.Windows;
-using Usecase;
-using WpfApp1.MainWindow;
 
 namespace WpfApp1.MainWindow
 {
@@ -16,8 +10,36 @@ namespace WpfApp1.MainWindow
     /// </summary>
     public partial class MainWindowView : Window
     {
+        #region Constants -------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Fields ----------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="model">MainWindowModelインスタンス</param>
         public MainWindowView(MainWindowModel model)
         {
+            #region View Element
+
+            #endregion
+
+            #region ViewModel Element
+
             _model = model;
 
             Text = _model.Entity.ToReactivePropertySlimAsSynchronized(
@@ -80,7 +102,7 @@ namespace WpfApp1.MainWindow
                 ReactivePropertyMode.DistinctUntilChanged)
                 .AddTo(_disposable);
 
-            DataGridSource = _model.Details.ToReadOnlyReactiveCollection(x => new DetailViewModel(x))
+            SpeakerOnOffs = _model.Details.ToReadOnlyReactiveCollection(x => new DetailViewModel(x))
                 .AddTo(_disposable);
 
             InitCommand.Subscribe(async () =>
@@ -106,9 +128,39 @@ namespace WpfApp1.MainWindow
             })
             .AddTo(_disposable);
 
+            #endregion
+
             InitializeComponent();
         }
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods ---------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _disposable.Dispose();
+        }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
+
+        /// <inheritdoc/>
         protected override void OnContentRendered(EventArgs e)
         {
             base.OnContentRendered(e);
@@ -116,9 +168,9 @@ namespace WpfApp1.MainWindow
             UpdateEntity();
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            _disposable.Dispose();
-        }
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
     }
 }

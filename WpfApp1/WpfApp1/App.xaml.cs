@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EntityMonitor;
+using Microsoft.Extensions.DependencyInjection;
 using Repository;
-using EntityMonitor;
 using System.Windows;
 using Usecase;
 using WpfApp1.MainWindow;
@@ -15,7 +15,6 @@ namespace WpfApp1
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-
             // DI
             var services = new ServiceCollection();
             services.AddSingleton<IXXRepository, InMemoryXXRepository>();
@@ -39,9 +38,8 @@ namespace WpfApp1
 
             entityMonitor.Show();
             setupWindow.ShowDialog();
-                       
+
             mainWindow.Show();
         }
     }
-
 }

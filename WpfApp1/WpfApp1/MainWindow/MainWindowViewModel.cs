@@ -6,57 +6,132 @@ using System.Reactive.Disposables;
 
 namespace WpfApp1.MainWindow
 {
+    /// <summary>
+    /// MainWindowのViewModel要素
+    /// </summary>
     public partial class MainWindowView : INotifyPropertyChanged
     {
-#pragma warning disable CS0067 // イベント 'MainWindow.PropertyChanged' は使用されていません
-        public event PropertyChangedEventHandler? PropertyChanged;
-#pragma warning restore CS0067 // イベント 'MainWindow.PropertyChanged' は使用されていません
+        #region Constants -------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Fields ----------------------------------------------------------------------------------------
 
         private readonly MainWindowModel _model;
 
         private readonly CompositeDisposable _disposable = new CompositeDisposable();
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 自動保存するしない
+        /// </summary>
         public bool IsAutoSave
         {
             get { return _model.IsAutoSave; }
-            set
-            {
-                _model.IsAutoSave = value;
-            }
+            set { _model.IsAutoSave = value; }
         }
 
+        /// <summary>
+        /// Text設定
+        /// </summary>
         public ReactivePropertySlim<string> Text { get; }
+
+        /// <summary>
+        /// Number設定
+        /// </summary>
         public ReactivePropertySlim<int> Number { get; }
+
+        /// <summary>
+        /// Bool設定
+        /// </summary>
         public ReactivePropertySlim<bool> Bool { get; }
+
+        /// <summary>
+        /// SomeEnum設定
+        /// </summary>
         public ReactivePropertySlim<SomeEnum> SomeEnum { get; }
 
-        public ReadOnlyReactiveCollection<DetailViewModel> DataGridSource { get; }
+        /// <summary>
+        /// SpeakerOnOffコレクション設定
+        /// </summary>
+        public ReadOnlyReactiveCollection<DetailViewModel> SpeakerOnOffs { get; }
 
+        /// <summary>
+        /// 初期化コマンド
+        /// </summary>
         public AsyncReactiveCommand InitCommand { get; } = new AsyncReactiveCommand();
+
+        /// <summary>
+        /// 保存コマンド
+        /// </summary>
         public AsyncReactiveCommand SaveCommand { get; } = new AsyncReactiveCommand();
 
+        /// <summary>
+        /// SomeEnum設定のコンボボックスアイテムリスト
+        /// </summary>
         public ReactivePropertySlim<List<ComboBoxItemDisplayValue<SomeEnum>>> ComboBoxItems { get; private set; } =
             new ReactivePropertySlim<List<ComboBoxItemDisplayValue<SomeEnum>>>();
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+#pragma warning disable CS0067 // イベント 'MainWindow.PropertyChanged' は使用されていません
+        /// <inheritdoc/>
+        public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント 'MainWindow.PropertyChanged' は使用されていません
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Constructor -----------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods ---------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("StyleCop.CSharp.LayoutRules", "SA1513:Closing brace should be followed by blank line", Justification = "<保留中>")]
         private void InitComboBoxItems()
         {
-#pragma warning disable IDE0028 // コレクションの初期化を簡略化します
             var comboBoxItemList = new List<ComboBoxItemDisplayValue<SomeEnum>>();
-#pragma warning restore IDE0028 // コレクションの初期化を簡略化します
-            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.XX.SomeEnum.Dog, Entity.XX.SomeEnum.Dog.GetText()));
+            comboBoxItemList.Add(new(Entity.XX.SomeEnum.Dog, Entity.XX.SomeEnum.Dog.GetText()));
             if (Bool.Value)
             {
-                comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.XX.SomeEnum.Cat, Entity.XX.SomeEnum.Cat.GetText()));
+                comboBoxItemList.Add(new(Entity.XX.SomeEnum.Cat, Entity.XX.SomeEnum.Cat.GetText()));
             }
-            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.XX.SomeEnum.Elephant, Entity.XX.SomeEnum.Elephant.GetText()));
-            comboBoxItemList.Add(new ComboBoxItemDisplayValue<SomeEnum>(Entity.XX.SomeEnum.Pig, Entity.XX.SomeEnum.Pig.GetText()));
+            comboBoxItemList.Add(new(Entity.XX.SomeEnum.Elephant, Entity.XX.SomeEnum.Elephant.GetText()));
+            comboBoxItemList.Add(new(Entity.XX.SomeEnum.Pig, Entity.XX.SomeEnum.Pig.GetText()));
 
-            ComboBoxItems.Value = new List<ComboBoxItemDisplayValue<SomeEnum>>(comboBoxItemList);
+            ComboBoxItems.Value = new(comboBoxItemList);
         }
 
         private void UpdateEntity()
         {
             _model.LoadEntity();
         }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
     }
 }

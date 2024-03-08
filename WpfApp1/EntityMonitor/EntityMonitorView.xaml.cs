@@ -35,8 +35,6 @@ namespace EntityMonitor
             });
 
             InitializeComponent();
-
-            SetupTimer();
         }
 
         // タイマを設定する
@@ -49,6 +47,13 @@ namespace EntityMonitor
 
                 await Task.WhenAll(task, task2);
             }
+        }
+
+        protected override async void OnContentRendered(EventArgs e)
+        {
+            base.OnContentRendered(e);
+
+            await SetupTimer();
         }
     }
 }

@@ -23,6 +23,10 @@ namespace WpfApp1.Setup
     /// </summary>
     public partial class SetupView : Window
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="model">SetupのModel</param>
         public SetupView(SetupModel model)
         {
             _model = model;

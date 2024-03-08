@@ -51,7 +51,7 @@
                   HeadersVisibility="None"
                   VirtualizingPanel.IsVirtualizing="True" EnableColumnVirtualization="True" EnableRowVirtualization="True"
                   VirtualizingPanel.ScrollUnit="Pixel" VirtualizingPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True"
-                  ItemsSource="{Binding DataGridSource}" MaxWidth="500" MaxHeight="300">
+                  ItemsSource="{Binding SpeakerOnOffs}" MaxWidth="500" MaxHeight="300">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[0].Value, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridCheckBoxColumn Binding="{Binding SpeakerOnOff[1].Value, UpdateSourceTrigger=PropertyChanged}"/>

@@ -11,16 +11,49 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.MainWindow
 {
+    /// <summary>
+    /// コレクション型のViewMmodelクラス
+    /// </summary>
     public class DetailViewModel : INotifyPropertyChanged, IDisposable
     {
+        #region Constants -------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Fields ----------------------------------------------------------------------------------------
+
+        private readonly DetailModel _model;
+
+        private readonly CompositeDisposable _disposable = new();
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Properties ------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// スピーカーON/OFF設定のDetail
+        /// </summary>
+        public List<ReactivePropertySlim<bool>> SpeakerOnOff { get; set; } = new();
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Events ----------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// 変更通知イベント（ReactiveProperty採用時のメモリリーク対策）
+        /// </summary>
+#pragma warning disable CS0067 // イベント 'DetailViewModel.PropertyChanged' は使用されていません
         public event PropertyChangedEventHandler? PropertyChanged;
+#pragma warning restore CS0067 // イベント 'DetailViewModel.PropertyChanged' は使用されていません
 
-        private DetailModel _model;
+        #endregion --------------------------------------------------------------------------------------------
 
-        private CompositeDisposable _disposable = new CompositeDisposable();
+        #region Constructor -----------------------------------------------------------------------------------
 
-        public List<ReactivePropertySlim<bool>> SpeakerOnOff { get; set; } = [];
-
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="model">コレクション型のModel</param>
         public DetailViewModel(DetailModel model)
         {
             _model = model;
@@ -48,9 +81,38 @@ namespace WpfApp1.MainWindow
             }
         }
 
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods ---------------------------------------------------------------------------------------
+
+        #region Methods - public ------------------------------------------------------------------------------
+
+        /// <summary>
+        /// オブジェクトの後始末
+        /// </summary>
         public void Dispose()
         {
             _disposable.Dispose();
         }
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - internal ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - protected ---------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - private -----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #region Methods - override ----------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
+
+        #endregion --------------------------------------------------------------------------------------------
     }
 }
