@@ -21,7 +21,7 @@ namespace WpfApp1.Setup
 
         private readonly SetupModel _model;
 
-        private readonly CompositeDisposable _disposables = new CompositeDisposable();
+        private readonly CompositeDisposable _disposables = new();
 
         /// <summary>
         /// スピーカー数設定

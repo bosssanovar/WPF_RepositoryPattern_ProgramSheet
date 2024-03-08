@@ -19,7 +19,7 @@ namespace WpfApp1.MainWindow
 
         private readonly MainWindowModel _model;
 
-        private readonly CompositeDisposable _disposable = new CompositeDisposable();
+        private readonly CompositeDisposable _disposable = new();
 
         #endregion --------------------------------------------------------------------------------------------
 

@@ -9,7 +9,7 @@
         private const int SpeakerCount_InitValue = 40;
 
         private BoolVO _bool = new(Bool_InitValue);
-        private SpeakerCountVO _speakerCount = new SpeakerCountVO(SpeakerCount_InitValue);
+        private SpeakerCountVO _speakerCount = new(SpeakerCount_InitValue);
 
         public TextVO Text { get; set; } = new(Text_InitValue);
 
